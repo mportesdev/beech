@@ -18,8 +18,7 @@ LINES_THICK = (
 )
 
 
-def dir_tree(path: Union[Path, str], indent=3, thick=False,
-             show_root=True) -> None:
+def tree(path: Union[Path, str], indent=3, thick=False, show_root=True) -> None:
     path = Path(path)
     data = _tree_data(path)
     if show_root:
