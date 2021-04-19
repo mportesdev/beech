@@ -2,7 +2,7 @@ from pathlib import Path
 
 import pytest
 
-from beech import tree, _tree_data, _print_tree
+from beech import tree, _tree_data, _lines_from_indent, _print_tree
 
 TEST_DIR = './sample_dir'
 DEFAULT_LINES = ['   ', ' │ ', ' └─', ' ├─']
@@ -80,6 +80,19 @@ PARAMS = (
 )
 def test_tree_data(path, expected):
     assert _tree_data(path) == expected
+
+
+@pytest.mark.parametrize(
+    'indent, thick, expected',
+    (
+        (3, False, DEFAULT_LINES),
+        (6, False, ['      ', '   │  ', '   └──', '   ├──']),
+        (1, True, [' ', '┃', '┗', '┣']),
+        (6, True, ['      ', '   ┃  ', '   ┗━━', '   ┣━━']),
+    )
+)
+def test_lines_from_indent(indent, thick, expected):
+    assert _lines_from_indent(indent, thick) == expected
 
 
 @pytest.mark.parametrize(
