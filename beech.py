@@ -9,14 +9,21 @@ LINES = (
     ('├', '─'),
 )
 
+LINES_THICK = (
+    (' ', ' '),
+    ('┃', ' '),
+    ('┗', '━'),
+    ('┣', '━')
+)
 
-def dir_tree(path, indent=3, show_root=True):
+
+def dir_tree(path, indent=3, thick=False, show_root=True):
     path = Path(path)
     data = _tree_data(path)
     if show_root:
         data = {path.name: data}
 
-    lines = _lines_from_indent(indent)
+    lines = _lines_from_indent(indent, thick)
     _print_tree(data, lines)
 
 
@@ -28,11 +35,11 @@ def _tree_data(path):
     }
 
 
-def _lines_from_indent(indent):
+def _lines_from_indent(indent, thick):
     half_indent = (indent + 1) // 2
     lines = [
         _align(char, half_indent, fill_char=fill_char)
-        for char, fill_char in LINES
+        for char, fill_char in (LINES_THICK if thick else LINES)
     ]
 
     lines = [_align(string, indent, left=False) for string in lines]
