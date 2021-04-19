@@ -10,9 +10,11 @@ LINES = (
 )
 
 
-def dir_tree(path, indent=3):
+def dir_tree(path, indent=3, show_root=True):
     path = Path(path)
-    data = {path.name: _tree_data(path)}
+    data = _tree_data(path)
+    if show_root:
+        data = {path.name: data}
 
     lines = _lines_from_indent(indent)
     _print_tree(data, lines)
