@@ -1,6 +1,6 @@
-Directory tree listing, no files.
+Directory tree listing, without files.
 
-Default settings:
+With default settings:
 
 ```python
 from beech import tree
@@ -14,17 +14,8 @@ sample_dir
  │  ├─dist
  │  ├─src
  │  │  ├─core
- │  │  │  └─__pycache__
  │  │  └─utils
- │  │     └─__pycache__
  │  └─tests
- ├─parsers
- │  ├─engine
- │  │  ├─json
- │  │  └─yaml
- │  └─syntax
- │     ├─json
- │     └─yaml
  └─web
     ├─app
     │  ├─templates
@@ -33,7 +24,7 @@ sample_dir
        └─img
 ```
 
-Wider indentation, thick branches:
+Setting wider indentation and thick branches:
 
 ```python
 from beech import tree
@@ -47,21 +38,35 @@ sample_dir
   ┃    ┣━━dist
   ┃    ┣━━src
   ┃    ┃    ┣━━core
-  ┃    ┃    ┃    ┗━━__pycache__
   ┃    ┃    ┗━━utils
-  ┃    ┃         ┗━━__pycache__
   ┃    ┗━━tests
-  ┣━━parsers
-  ┃    ┣━━engine
-  ┃    ┃    ┣━━json
-  ┃    ┃    ┗━━yaml
-  ┃    ┗━━syntax
-  ┃         ┣━━json
-  ┃         ┗━━yaml
   ┗━━web
        ┣━━app
        ┃    ┣━━templates
        ┃    ┗━━views
        ┗━━static
             ┗━━img
+```
+
+Not including the root directory in the listing:
+
+```python
+from beech import tree
+
+tree('sample_dir', show_root=False)
+```
+
+```
+library
+ ├─dist
+ ├─src
+ │  ├─core
+ │  └─utils
+ └─tests
+web
+ ├─app
+ │  ├─templates
+ │  └─views
+ └─static
+    └─img
 ```
