@@ -68,10 +68,3 @@ def _print_tree(data: dict, lines: list, levels=()) -> None:
 
         print(dir_name)
         _print_tree(data[dir_name], lines, levels=levels + (is_last,))
-
-
-if __name__ == "__main__":
-    print('This is a demonstration directory tree listing...\n')
-
-    path = './rootdir'
-    dir_tree(path)
