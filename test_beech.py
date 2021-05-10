@@ -1,3 +1,5 @@
+# coding: utf-8
+
 from pathlib import Path
 
 import pytest
@@ -51,6 +53,18 @@ PARAMS = (
                    ' │  └─views\n'
                    ' └─static\n'
                    '    └─img\n'),
+        'output_spaced': ('library\n'
+                          ' ├─ dist\n'
+                          ' ├─ src\n'
+                          ' │  ├─ core\n'
+                          ' │  └─ utils\n'
+                          ' └─ tests\n'
+                          'web\n'
+                          ' ├─ app\n'
+                          ' │  ├─ templates\n'
+                          ' │  └─ views\n'
+                          ' └─ static\n'
+                          '    └─ img\n'),
     },
     {
         'path': Path(TEST_DIR) / 'web',
@@ -60,6 +74,11 @@ PARAMS = (
                    ' └─views\n'
                    'static\n'
                    ' └─img\n'),
+        'output_spaced': ('app\n'
+                          ' ├─ templates\n'
+                          ' └─ views\n'
+                          'static\n'
+                          ' └─ img\n'),
     },
     {
         'path': Path(TEST_DIR) / 'web' / 'static',
@@ -101,6 +120,18 @@ def test_lines_from_indent(indent, thick, expected):
 )
 def test_print_tree(capsys, data, expected):
     _print_tree(data, DEFAULT_LINES)
+    std_out = capsys.readouterr().out
+
+    assert std_out == expected
+
+
+@pytest.mark.parametrize(
+    'data, expected',
+    [(param['dict'], param.get('output_spaced', param['output']))
+     for param in PARAMS]
+)
+def test_print_tree_with_space(capsys, data, expected):
+    _print_tree(data, lines=DEFAULT_LINES, add_space=True)
     std_out = capsys.readouterr().out
 
     assert std_out == expected

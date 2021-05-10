@@ -48,6 +48,30 @@ sample_dir
             ┗━━img
 ```
 
+Setting wider indentation and an additional space before the dir name:
+
+```python
+from beech import tree
+
+tree('sample_dir', indent=5, add_space=True)
+```
+
+```
+sample_dir
+  ├── library
+  │    ├── dist
+  │    ├── src
+  │    │    ├── core
+  │    │    └── utils
+  │    └── tests
+  └── web
+       ├── app
+       │    ├── templates
+       │    └── views
+       └── static
+            └── img
+```
+
 Not including the root directory in the listing:
 
 ```python

@@ -18,14 +18,15 @@ LINES_THICK = (
 )
 
 
-def tree(path: Union[Path, str], indent=3, thick=False, show_root=True) -> None:
+def tree(path: Union[Path, str], indent=3, add_space=False, thick=False,
+         show_root=True) -> None:
     path = Path(path)
     data = _tree_data(path)
     if show_root:
         data = {path.name: data}
 
     lines = _lines_from_indent(indent, thick)
-    _print_tree(data, lines)
+    _print_tree(data, lines, add_space)
 
 
 def _tree_data(path: Path) -> dict:
@@ -53,7 +54,7 @@ def _align(string: str, width: int, left=True, fill_char='') -> str:
     return f'{string:{format_spec}}'
 
 
-def _print_tree(data: dict, lines: list, levels=()) -> None:
+def _print_tree(data: dict, lines: list, add_space=False, levels=()) -> None:
     dir_names = sorted(data)
     blank, vertical, corner, branch = lines
 
@@ -63,7 +64,7 @@ def _print_tree(data: dict, lines: list, levels=()) -> None:
 
         is_last = dir_name is dir_names[-1]
         if levels:
-            print(corner if is_last else branch, end='')
+            print(corner if is_last else branch, end=' ' if add_space else '')
 
         print(dir_name)
-        _print_tree(data[dir_name], lines, levels=levels + (is_last,))
+        _print_tree(data[dir_name], lines, add_space, levels=levels + (is_last,))
