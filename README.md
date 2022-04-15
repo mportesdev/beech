@@ -75,24 +75,21 @@ sample_dir
        └── tests
 ```
 
-Not including the root directory in the listing:
+Not including the root directory and omitting hidden subdirectories:
 
 ```python
 from beech import tree
 
-tree('sample_dir', show_root=False)
+tree('sample_dir', show_root=False, skip_hidden=True)
 ```
 
 ```
-.hidden
- └─.hidden
 app
  ├─app
  │  └─views
  └─static
     └─img
 library
- ├─.pytest_cache
  ├─src
  │  ├─core
  │  └─utils

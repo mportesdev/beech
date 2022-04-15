@@ -19,9 +19,9 @@ LINES_THICK = (
 
 
 def tree(path: Union[Path, str], indent=3, add_space=False, thick=False,
-         show_root=True) -> None:
+         show_root=True, skip_hidden=False) -> None:
     path = Path(path)
-    data = _tree_data(path)
+    data = _tree_data(path, skip_hidden)
     if show_root:
         data = {path.name: data}
 
@@ -29,11 +29,11 @@ def tree(path: Union[Path, str], indent=3, add_space=False, thick=False,
     _print_tree(data, lines, add_space)
 
 
-def _tree_data(path: Path) -> dict:
+def _tree_data(path: Path, skip_hidden=False) -> dict:
     return {
-        item.name: _tree_data(item)
+        item.name: _tree_data(item, skip_hidden)
         for item in path.iterdir()
-        if item.is_dir()
+        if item.is_dir() and not (skip_hidden and item.name.startswith('.'))
     }
 
 

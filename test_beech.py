@@ -61,6 +61,23 @@ PARAMS = (
                 'tests': {},
             },
         },
+        'dict_without_hidden': {
+            'app': {
+                'app': {
+                    'views': {},
+                },
+                'static': {
+                    'img': {},
+                },
+            },
+            'library': {
+                'src': {
+                    'core': {},
+                    'utils': {},
+                },
+                'tests': {},
+            },
+        },
         'output': (
             '.hidden\n'
             ' └─.hidden\n'
@@ -138,6 +155,17 @@ PARAMS = (
 )
 def test_tree_data(path, expected):
     assert _tree_data(path) == expected
+
+
+@pytest.mark.parametrize(
+    'path, expected',
+    [
+        (param['path'], param.get('dict_without_hidden', param['dict']))
+        for param in PARAMS
+    ]
+)
+def test_tree_data_skip_hidden(path, expected):
+    assert _tree_data(path, skip_hidden=True) == expected
 
 
 @pytest.mark.parametrize(
