@@ -154,7 +154,7 @@ PARAMS = (
     ]
 )
 def test_tree_data(path, expected):
-    assert _tree_data(path) == expected
+    assert _tree_data(path, skip_hidden=False) == expected
 
 
 @pytest.mark.parametrize(
@@ -188,7 +188,7 @@ def test_lines_from_indent(indent, thick, expected):
     ]
 )
 def test_print_tree(capsys, data, expected):
-    _print_tree(data, DEFAULT_LINES)
+    _print_tree(data, DEFAULT_LINES, add_space=False)
     std_out = capsys.readouterr().out
     assert std_out == expected
 
