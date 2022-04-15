@@ -10,18 +10,19 @@ tree('sample_dir')
 
 ```
 sample_dir
- ├─library
- │  ├─dist
- │  ├─src
- │  │  ├─core
- │  │  └─utils
- │  └─tests
- └─web
-    ├─app
-    │  ├─templates
-    │  └─views
-    └─static
-       └─img
+ ├─.hidden
+ │  └─.hidden
+ ├─app
+ │  ├─app
+ │  │  └─views
+ │  └─static
+ │     └─img
+ └─library
+    ├─.pytest_cache
+    ├─src
+    │  ├─core
+    │  └─utils
+    └─tests
 ```
 
 Setting wider indentation and thick branches:
@@ -34,18 +35,19 @@ tree('sample_dir', indent=5, thick=True)
 
 ```
 sample_dir
-  ┣━━library
-  ┃    ┣━━dist
-  ┃    ┣━━src
-  ┃    ┃    ┣━━core
-  ┃    ┃    ┗━━utils
-  ┃    ┗━━tests
-  ┗━━web
-       ┣━━app
-       ┃    ┣━━templates
-       ┃    ┗━━views
-       ┗━━static
-            ┗━━img
+  ┣━━.hidden
+  ┃    ┗━━.hidden
+  ┣━━app
+  ┃    ┣━━app
+  ┃    ┃    ┗━━views
+  ┃    ┗━━static
+  ┃         ┗━━img
+  ┗━━library
+       ┣━━.pytest_cache
+       ┣━━src
+       ┃    ┣━━core
+       ┃    ┗━━utils
+       ┗━━tests
 ```
 
 Setting wider indentation and an additional space before the dir name:
@@ -58,18 +60,19 @@ tree('sample_dir', indent=5, add_space=True)
 
 ```
 sample_dir
-  ├── library
-  │    ├── dist
-  │    ├── src
-  │    │    ├── core
-  │    │    └── utils
-  │    └── tests
-  └── web
-       ├── app
-       │    ├── templates
-       │    └── views
-       └── static
-            └── img
+  ├── .hidden
+  │    └── .hidden
+  ├── app
+  │    ├── app
+  │    │    └── views
+  │    └── static
+  │         └── img
+  └── library
+       ├── .pytest_cache
+       ├── src
+       │    ├── core
+       │    └── utils
+       └── tests
 ```
 
 Not including the root directory in the listing:
@@ -81,16 +84,17 @@ tree('sample_dir', show_root=False)
 ```
 
 ```
+.hidden
+ └─.hidden
+app
+ ├─app
+ │  └─views
+ └─static
+    └─img
 library
- ├─dist
+ ├─.pytest_cache
  ├─src
  │  ├─core
  │  └─utils
  └─tests
-web
- ├─app
- │  ├─templates
- │  └─views
- └─static
-    └─img
 ```
