@@ -30,27 +30,27 @@ Setting wider indentation and thick branches:
 ```python
 from beech import tree
 
-tree('sample_dir', indent=5, thick=True)
+tree('sample_dir', indent=4, thick=True)
 ```
 
 ```
 sample_dir
-  ┣━━.hidden
-  ┃    ┗━━.hidden
-  ┣━━app
-  ┃    ┣━━app
-  ┃    ┃    ┗━━views
-  ┃    ┗━━static
-  ┃         ┗━━img
-  ┗━━library
-       ┣━━.pytest_cache
-       ┣━━src
-       ┃    ┣━━core
-       ┃    ┗━━utils
-       ┗━━tests
+  ┣━.hidden
+  ┃   ┗━.hidden
+  ┣━app
+  ┃   ┣━app
+  ┃   ┃   ┗━views
+  ┃   ┗━static
+  ┃       ┗━img
+  ┗━library
+      ┣━.pytest_cache
+      ┣━src
+      ┃   ┣━core
+      ┃   ┗━utils
+      ┗━tests
 ```
 
-Setting wider indentation and an additional space before the dir name:
+Setting even wider indentation, plus an additional space before the dir name:
 
 ```python
 from beech import tree
